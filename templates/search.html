@@ -1,0 +1,16 @@
+<h1>Search Product</h1>
+<form method="post">
+    Product Name: <input name="name">
+    <button>Search</button>
+</form>
+
+{% for r in results %}
+<p>
+    {{ r[0] }} |
+    Aisle: {{ r[1] }} |
+    ₹{{ r[2] }} |
+    Stock: {{ r[3] }}
+</p>
+{% endfor %}
+
+<a href="/">Back</a>

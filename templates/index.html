@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Grocery</title>
+</head>
+<body>
+<h1>🛒 Smart Grocery Inventory</h1>
+
+<a href="/add">Add Product</a> |
+<a href="/search">Search Product</a>
+
+<h2>All Products</h2>
+<table border="1">
+<tr>
+    <th>ID</th><th>Name</th><th>Aisle</th><th>Price</th><th>Stock</th>
+</tr>
+
+{% for p in products %}
+<tr>
+    <td>{{ p[0] }}</td>
+    <td>{{ p[1] }}</td>
+    <td>{{ p[3] }}</td>
+    <td>{{ p[4] }}</td>
+    <td>{{ p[5] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>Place Order</h2>
+<form method="post" action="/order">
+    Customer ID: <input name="customer_id"><br>
+    Product ID: <input name="product_id"><br>
+    Quantity: <input name="quantity"><br>
+    <button type="submit">Pay & Collect</button>
+</form>
+
+</body>
+</html>

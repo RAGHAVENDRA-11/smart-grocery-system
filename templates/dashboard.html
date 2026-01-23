@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-brand">Smart Grocery ({{ role }})</span>
+    <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
+</nav>
+
+<div class="container mt-4">
+
+{% if role == "admin" %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h4>Add Product</h4>
+        <form method="post" action="/add" class="row g-2">
+            <div class="col-md-4"><input class="form-control" name="name" placeholder="Name"></div>
+            <div class="col-md-4"><input class="form-control" name="category" placeholder="Category"></div>
+            <div class="col-md-4"><input class="form-control" name="aisle" placeholder="Aisle"></div>
+            <div class="col-md-3"><input class="form-control" name="price" placeholder="Price"></div>
+            <div class="col-md-3"><input class="form-control" name="stock" placeholder="Stock"></div>
+            <div class="col-md-6"><button class="btn btn-success w-100">Add Product</button></div>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<h4>Inventory</h4>
+<table class="table table-bordered table-striped">
+<tr>
+    <th>ID</th><th>Name</th><th>Aisle</th><th>Price</th><th>Stock</th>
+</tr>
+{% for p in products %}
+<tr>
+    <td>{{ p[0] }}</td>
+    <td>{{ p[1] }}</td>
+    <td>{{ p[3] }}</td>
+    <td>₹{{ p[4] }}</td>
+    <td>{{ p[5] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% if role == "customer" %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>Place Order</h4>
+        <form method="post" action="/order" class="row g-2">
+            <div class="col-md-4"><input class="form-control" name="product_id" placeholder="Product ID"></div>
+            <div class="col-md-4"><input class="form-control" name="quantity" placeholder="Quantity"></div>
+            <div class="col-md-4"><button class="btn btn-primary w-100">Pay & Collect</button></div>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
